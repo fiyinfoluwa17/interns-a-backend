@@ -1,5 +1,5 @@
 import Auth from "../models/auth.js";
-import bcrypt from "bcrypt";
+// import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import nodemailer from "nodemailer";
 import passport from "passport";
@@ -30,7 +30,8 @@ export const register = async (req, res) => {
       user: { email: auth.email, name: auth.name },
     });
   } catch (error) {
-    res.status(404).json({ err: error.message });
+    res
+    .status(404).json({ err: error.message });
   }
 };
 
