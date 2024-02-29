@@ -1,15 +1,12 @@
 import dotenv from "dotenv";
 dotenv.config();
-import passport from "passport";
-import session from "express-session";
-
 import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 import authRouter from "./routes/authRoutes.js";
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 
 app.use(express.json());
 app.use(cors());
@@ -17,21 +14,10 @@ app.use(cors());
 app.get("/", (req, res) => {
   res.status(200).json({
     msg: "home page",
-    googleLink: "/api/v1/auth/google",
   });
 });
 
-// Initialize session
-app.use(session({
-  secret: process.env.SESSION_SECRET,
-  resave: true,
-  saveUninitialized: true,
-  cookie: { maxAge: 1000 * 60 * 60 },
-}));
 
-
-app.use(passport.initialize());
-app.use(passport.session());
 
 
 app.use("/api/v1/", authRouter);
@@ -42,7 +28,7 @@ app.use((req, res) => {
 
 const server = async () => {
   try {
-    await mongoose.connect(process.env.MONGO_URL, { dbName: "fuel" });
+    await mongoose.connect(process.env.MONGO_URL, { dbName: "fuelX" });
 
     app.listen(PORT, (req, res) => {
       console.log(`listening on ${PORT}`);

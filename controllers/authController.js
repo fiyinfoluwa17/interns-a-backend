@@ -2,8 +2,6 @@ import Auth from "../models/auth.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import nodemailer from "nodemailer";
-import passport from "passport";
-import { OAuth2Strategy as GoogleStrategy } from "passport-google-oauth";
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -142,28 +140,3 @@ export const resetPassword = async (req, res) => {
   }
 };
 
-// this is for google authentication
-
-passport.use(
-  new GoogleStrategy(
-    {
-      clientID: process.env.CLIENTID,
-      clientSecret: process.env.CLIENTSECRET,
-      callbackURL: "http://localhost:3000/auth/google/callback",
-    },
-    async (accessToken, refreshToken, profile, done) => {
-      // METHOD USED TO CREATE OR AUTHENTICATE
-      return done(null, profile);
-    }
-  )
-);
-
-passport.serializeUser((user, done) => {
-  done(null, user);
-});
-
-passport.deserializeUser((user, done) => {
-  done(null, user);
-});
-
-export default passport;
