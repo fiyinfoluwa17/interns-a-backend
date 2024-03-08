@@ -5,12 +5,17 @@ import cors from "cors";
 import mongoose from "mongoose";
 import authRouter from "./src/routes/authRoutes.js";
 import morgan from "morgan";
+import userRouter from "./src/routes/userRoutes.js"
 
 const app = express();
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3000;
+
+let corsOptions = {
+  origin: ['http://localhost:8080', 'http://localhost:5173' , 'http://localhost:5174']
+}
 
 app.use(express.json());
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(morgan("dev"));
 
 app.get("/", (req, res) => {
@@ -23,10 +28,13 @@ app.get("/", (req, res) => {
 
 
 app.use("/api/v1/", authRouter);
+app.use("/api/v1/", userRouter);
 
 app.use((req, res) => {
   res.status(404).json({ err: "Route not found" });
 });
+
+
 
 const server = async () => {
   try {
