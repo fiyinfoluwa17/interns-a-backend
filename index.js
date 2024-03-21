@@ -11,7 +11,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 let corsOptions = {
-  origin: ['http://localhost:8080', 'http://localhost:5173' , 'http://localhost:5174']
+  origin: ['http://localhost:8080', 'http://localhost:5173' , 'http://localhost:5174', 'https://team-a-frontend-2ot86rids-fiyinfoluwa17s-projects.vercel.app/']
 }
 
 app.use(express.json());
@@ -33,6 +33,8 @@ app.use("/api/v1/", userRouter);
 app.use((req, res) => {
   res.status(404).json({ err: "Route not found" });
 });
+
+
 
 
 
