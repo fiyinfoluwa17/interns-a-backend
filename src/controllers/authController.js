@@ -11,7 +11,7 @@ export const register = async (req, res) => {
   try {
     const emailUsed = await Auth.findOne({ email });
 
-    if(!name.trim()){
+    if(!name){
       return res.json({ error: "username must not be empty!"})
     }
     if(!email){
