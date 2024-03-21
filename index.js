@@ -10,12 +10,9 @@ import userRouter from "./src/routes/userRoutes.js"
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-let corsOptions = {
-  origin: ['http://localhost:8080', 'http://localhost:5173' , 'http://localhost:5174', 'https://interns-a-backend-2.onrender.com']
-}
 
 app.use(express.json());
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(morgan("dev"));
 
 app.get("/", (req, res) => {
