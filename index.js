@@ -11,7 +11,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 let corsOptions = {
-  origin: ['http://localhost:8080', 'http://localhost:5173' , 'http://localhost:5174', 'https://team-a-frontend-2ot86rids-fiyinfoluwa17s-projects.vercel.app/']
+  origin: ['http://localhost:8080', 'http://localhost:5173' , 'http://localhost:5174', 'https://interns-a-backend-2.onrender.com']
 }
 
 app.use(express.json());
